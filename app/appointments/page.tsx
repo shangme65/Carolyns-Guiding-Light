@@ -1,79 +1,101 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
-import { Calendar, Clock, FileText, Loader2, CheckCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { Calendar, Clock, FileText, Loader2, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const appointmentTypes = [
-  { value: 'reading', label: 'Spiritual Reading', description: 'Deep insights into your life path and purpose' },
-  { value: 'consultation', label: 'Life Consultation', description: 'Guidance on specific life challenges' },
-  { value: 'healing', label: 'Energy Healing', description: 'Restore balance and harmony to your energy' },
-  { value: 'meditation', label: 'Guided Meditation', description: 'Personal meditation session for inner peace' },
-]
+  {
+    value: "reading",
+    label: "Spiritual Reading",
+    description: "Deep insights into your life path and purpose",
+  },
+  {
+    value: "consultation",
+    label: "Life Consultation",
+    description: "Guidance on specific life challenges",
+  },
+  {
+    value: "healing",
+    label: "Energy Healing",
+    description: "Restore balance and harmony to your energy",
+  },
+  {
+    value: "meditation",
+    label: "Guided Meditation",
+    description: "Personal meditation session for inner peace",
+  },
+];
 
 export default function AppointmentsPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState('')
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
-    date: '',
-    time: '',
-    type: '',
-    notes: '',
-  })
+    date: "",
+    time: "",
+    type: "",
+    notes: "",
+  });
 
-  if (status === 'loading') {
+  if (status === "loading") {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black flex items-center justify-center">
         <Loader2 className="h-12 w-12 text-purple-400 animate-spin" />
       </div>
-    )
+    );
   }
 
   if (!session) {
-    router.push('/auth/signin')
-    return null
+    router.push("/auth/signin");
+    return null;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError('')
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
 
     try {
-      const response = await fetch('/api/appointments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
+      });
 
       if (!response.ok) {
-        throw new Error('Failed to book appointment')
+        throw new Error("Failed to book appointment");
       }
 
-      setSuccess(true)
+      setSuccess(true);
       setTimeout(() => {
-        router.push('/dashboard')
-      }, 3000)
+        router.push("/dashboard");
+      }, 3000);
     } catch (error) {
-      setError('Failed to book appointment. Please try again.')
+      setError("Failed to book appointment. Please try again.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  const tomorrow = new Date()
-  tomorrow.setDate(tomorrow.getDate() + 1)
-  const minDate = tomorrow.toISOString().split('T')[0]
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const minDate = tomorrow.toISOString().split("T")[0];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black pt-28 pb-16 px-4">
@@ -121,7 +143,9 @@ export default function AppointmentsPage() {
           >
             <Card className="bg-white/10 backdrop-blur-lg border-white/20">
               <CardHeader>
-                <CardTitle className="text-2xl text-white">Appointment Details</CardTitle>
+                <CardTitle className="text-2xl text-white">
+                  Appointment Details
+                </CardTitle>
                 <CardDescription className="text-white/70">
                   Fill in the information below to schedule your session
                 </CardDescription>
@@ -136,7 +160,9 @@ export default function AppointmentsPage() {
 
                   {/* Appointment Type */}
                   <div className="space-y-4">
-                    <Label className="text-white text-lg">Select Service Type</Label>
+                    <Label className="text-white text-lg">
+                      Select Service Type
+                    </Label>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {appointmentTypes.map((type) => (
                         <motion.div
@@ -147,8 +173,8 @@ export default function AppointmentsPage() {
                           <label
                             className={`block p-4 rounded-lg border-2 cursor-pointer transition-all ${
                               formData.type === type.value
-                                ? 'border-purple-500 bg-purple-500/20'
-                                : 'border-white/30 bg-white/5 hover:border-white/50'
+                                ? "border-purple-500 bg-purple-500/20"
+                                : "border-white/30 bg-white/5 hover:border-white/50"
                             }`}
                           >
                             <input
@@ -156,12 +182,21 @@ export default function AppointmentsPage() {
                               name="type"
                               value={type.value}
                               checked={formData.type === type.value}
-                              onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                              onChange={(e) =>
+                                setFormData({
+                                  ...formData,
+                                  type: e.target.value,
+                                })
+                              }
                               className="sr-only"
                               required
                             />
-                            <div className="text-white font-semibold mb-1">{type.label}</div>
-                            <div className="text-white/70 text-sm">{type.description}</div>
+                            <div className="text-white font-semibold mb-1">
+                              {type.label}
+                            </div>
+                            <div className="text-white/70 text-sm">
+                              {type.description}
+                            </div>
                           </label>
                         </motion.div>
                       ))}
@@ -181,7 +216,9 @@ export default function AppointmentsPage() {
                         min={minDate}
                         required
                         value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, date: e.target.value })
+                        }
                         className="bg-white/10 border-white/30 text-white"
                       />
                     </div>
@@ -195,7 +232,9 @@ export default function AppointmentsPage() {
                         id="time"
                         required
                         value={formData.time}
-                        onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, time: e.target.value })
+                        }
                         className="w-full h-10 rounded-md bg-white/10 border border-white/30 text-white px-3 py-2"
                       >
                         <option value="">Select a time</option>
@@ -223,7 +262,9 @@ export default function AppointmentsPage() {
                       rows={4}
                       placeholder="Share any specific topics or questions you'd like to discuss..."
                       value={formData.notes}
-                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, notes: e.target.value })
+                      }
                       className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                     />
                   </div>
@@ -240,7 +281,7 @@ export default function AppointmentsPage() {
                         Booking...
                       </>
                     ) : (
-                      'Confirm Appointment'
+                      "Confirm Appointment"
                     )}
                   </Button>
                 </form>
@@ -250,5 +291,5 @@ export default function AppointmentsPage() {
         )}
       </div>
     </div>
-  )
+  );
 }

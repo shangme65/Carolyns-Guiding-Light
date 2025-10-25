@@ -3,11 +3,13 @@
 ## 🚀 Get Started in 5 Minutes
 
 ### 1. Install Dependencies
+
 ```bash
 npm install
 ```
 
 ### 2. Set Up Environment
+
 ```bash
 # Copy the example environment file
 cp .env.example .env.local
@@ -18,6 +20,7 @@ cp .env.example .env.local
 ```
 
 ### 3. Set Up Database
+
 ```bash
 # Push the schema to your database
 npm run db:push
@@ -27,6 +30,7 @@ npm run db:seed
 ```
 
 ### 4. Run Development Server
+
 ```bash
 npm run dev
 ```
@@ -47,10 +51,12 @@ Visit [http://localhost:3000](http://localhost:3000)
 ## 📝 Default Credentials (After Seeding)
 
 **Admin:**
+
 - Email: admin@carolynsguidinglight.com
 - Password: admin123
 
 **Demo User:**
+
 - Email: demo@example.com
 - Password: demo123
 

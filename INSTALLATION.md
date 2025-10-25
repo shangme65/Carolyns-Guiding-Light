@@ -5,16 +5,19 @@
 Follow these commands in order to get your project running:
 
 ### Step 1: Navigate to Project Directory
+
 ```bash
 cd c:/Users/HP/Desktop/Carolyns-Guilding-Light
 ```
 
 ### Step 2: Install All Dependencies
+
 ```bash
 npm install
 ```
 
 This will install all required packages:
+
 - Next.js 14
 - React 18
 - TypeScript
@@ -28,6 +31,7 @@ This will install all required packages:
 ### Step 3: Set Up Environment Variables
 
 **Option A: Copy the example file**
+
 ```bash
 # On Windows (PowerShell)
 Copy-Item .env.example .env.local
@@ -40,6 +44,7 @@ cp .env.example .env.local
 ```
 
 **Option B: Manually create .env.local and add:**
+
 ```env
 DATABASE_URL="postgresql://user:password@host.neon.tech/database?sslmode=require"
 NEXTAUTH_URL="http://localhost:3000"
@@ -50,11 +55,13 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ### Step 4: Generate NEXTAUTH_SECRET
 
 **Option A: Using OpenSSL (Recommended)**
+
 ```bash
 openssl rand -base64 32
 ```
 
 **Option B: Using Node.js**
+
 ```bash
 node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 ```
@@ -69,25 +76,30 @@ Copy the output and paste it as your NEXTAUTH_SECRET in .env.local
 4. Paste it as DATABASE_URL in .env.local
 
 ### Step 6: Generate Prisma Client
+
 ```bash
 npx prisma generate
 ```
 
 ### Step 7: Push Database Schema
+
 ```bash
 npm run db:push
 ```
 
 ### Step 8: Seed Database (Optional but Recommended)
+
 ```bash
 npm run db:seed
 ```
 
 This creates:
+
 - Admin user: admin@carolynsguidinglight.com / admin123
 - Demo user: demo@example.com / demo123
 
 ### Step 9: Start Development Server
+
 ```bash
 npm run dev
 ```
@@ -99,6 +111,7 @@ Visit [http://localhost:3000](http://localhost:3000)
 ## Quick Setup (Windows)
 
 Run the automated setup script:
+
 ```bash
 ./setup.bat
 ```
@@ -106,6 +119,7 @@ Run the automated setup script:
 ## Quick Setup (Mac/Linux)
 
 Run the automated setup script:
+
 ```bash
 chmod +x setup.sh
 ./setup.sh
@@ -143,6 +157,7 @@ vercel --prod
 ## Troubleshooting
 
 ### Port Already in Use
+
 ```bash
 # Kill process on port 3000 (Windows)
 netstat -ano | findstr :3000
@@ -153,11 +168,13 @@ lsof -ti:3000 | xargs kill -9
 ```
 
 ### Database Connection Issues
+
 1. Check DATABASE_URL format
 2. Ensure Neon database is active
 3. Verify connection string is correct
 
 ### Build Errors
+
 ```bash
 # Clear cache and reinstall
 rm -rf node_modules .next
@@ -207,15 +224,15 @@ Carolyns-Guilding-Light/
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run db:push` | Push schema to database |
-| `npm run db:seed` | Seed database with data |
-| `npm run db:studio` | Open Prisma Studio |
+| Command             | Description              |
+| ------------------- | ------------------------ |
+| `npm run dev`       | Start development server |
+| `npm run build`     | Build for production     |
+| `npm start`         | Start production server  |
+| `npm run lint`      | Run ESLint               |
+| `npm run db:push`   | Push schema to database  |
+| `npm run db:seed`   | Seed database with data  |
+| `npm run db:studio` | Open Prisma Studio       |
 
 ---
 

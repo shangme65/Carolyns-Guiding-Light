@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { useSession, signOut } from 'next-auth/react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sparkles, User, LogOut } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Sparkles, User, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Services', href: '/services' },
-  { name: 'Book Appointment', href: '/appointments' },
-  { name: 'Contact', href: '/contact' },
-]
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Book Appointment", href: "/appointments" },
+  { name: "Contact", href: "/contact" },
+];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const pathname = usePathname()
-  const { data: session } = useSession()
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const { data: session } = useSession();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <motion.nav
@@ -36,8 +36,8 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-black/90 backdrop-blur-lg shadow-lg shadow-purple-500/20'
-          : 'bg-transparent'
+          ? "bg-black/90 backdrop-blur-lg shadow-lg shadow-purple-500/20"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ export default function Navbar() {
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               <Sparkles className="h-8 w-8 text-purple-500" />
@@ -69,9 +69,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={`relative text-sm font-medium transition-colors hover:text-purple-400 ${
-                  pathname === item.href
-                    ? 'text-purple-400'
-                    : 'text-gray-300'
+                  pathname === item.href ? "text-purple-400" : "text-gray-300"
                 }`}
               >
                 {item.name}
@@ -84,11 +82,15 @@ export default function Navbar() {
                 )}
               </Link>
             ))}
-            
+
             {session ? (
               <div className="flex items-center space-x-4">
                 <Link href="/dashboard">
-                  <Button variant="ghost" size="sm" className="animate-pulse hover:animate-none">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="animate-pulse hover:animate-none"
+                  >
                     <User className="mr-2 h-4 w-4" />
                     Dashboard
                   </Button>
@@ -127,7 +129,7 @@ export default function Navbar() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-black/95 backdrop-blur-lg"
           >
@@ -139,14 +141,14 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className={`block text-lg font-medium transition-colors ${
                     pathname === item.href
-                      ? 'text-purple-400'
-                      : 'text-gray-300 hover:text-purple-400'
+                      ? "text-purple-400"
+                      : "text-gray-300 hover:text-purple-400"
                   }`}
                 >
                   {item.name}
                 </Link>
               ))}
-              
+
               {session ? (
                 <>
                   <Link href="/dashboard" onClick={() => setIsOpen(false)}>
@@ -159,8 +161,8 @@ export default function Navbar() {
                     variant="outline"
                     className="w-full justify-start"
                     onClick={() => {
-                      signOut()
-                      setIsOpen(false)
+                      signOut();
+                      setIsOpen(false);
                     }}
                   >
                     <LogOut className="mr-2 h-4 w-4" />
@@ -179,5 +181,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </motion.nav>
-  )
+  );
 }

@@ -29,12 +29,14 @@ A modern, immersive spiritual guidance and healing platform built with Next.js 1
 ## 📦 Installation
 
 1. **Clone the repository:**
+
 ```bash
 git clone https://github.com/shangme65/Carolyns-Guiding-Light.git
 cd Carolyns-Guiding-Light
 ```
 
 2. **Install dependencies:**
+
 ```bash
 npm install
 ```
@@ -56,6 +58,7 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
 To generate a secure `NEXTAUTH_SECRET`:
+
 ```bash
 openssl rand -base64 32
 ```
@@ -105,12 +108,14 @@ npm run db:studio
 ## 🌐 Deployment to Vercel
 
 1. **Connect to GitHub:**
+
    - Push your code to GitHub
    - Import the repository in Vercel
 
 2. **Configure Environment Variables:**
-   
+
    In your Vercel project settings, add:
+
    - `DATABASE_URL`: Your Neon PostgreSQL connection string
    - `NEXTAUTH_URL`: Your production domain (e.g., https://carolynsguidinglight.com)
    - `NEXTAUTH_SECRET`: Your secret key
@@ -123,6 +128,7 @@ npm run db:studio
 ## 🗄️ Database Schema
 
 The application includes:
+
 - **Users** with authentication
 - **Appointments** with booking details
 - **Sessions** for NextAuth
@@ -138,10 +144,12 @@ The application includes:
 ## 📝 Default Login Credentials (After Seeding)
 
 **Admin:**
+
 - Email: admin@carolynsguidinglight.com
 - Password: admin123
 
 **Demo User:**
+
 - Email: demo@example.com
 - Password: demo123
 

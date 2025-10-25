@@ -1,30 +1,39 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, Heart } from 'lucide-react'
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Youtube,
+  Mail,
+  Phone,
+  MapPin,
+  Heart,
+} from "lucide-react";
 
 const socialLinks = [
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
-]
+  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Youtube, href: "#", label: "YouTube" },
+];
 
 const footerLinks = {
-  'Quick Links': [
-    { name: 'About Us', href: '/about' },
-    { name: 'Services', href: '/services' },
-    { name: 'Book Appointment', href: '/appointments' },
-    { name: 'Contact', href: '/contact' },
+  "Quick Links": [
+    { name: "About Us", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Book Appointment", href: "/appointments" },
+    { name: "Contact", href: "/contact" },
   ],
-  'Services': [
-    { name: 'Spiritual Readings', href: '/services#readings' },
-    { name: 'Life Coaching', href: '/services#coaching' },
-    { name: 'Energy Healing', href: '/services#healing' },
-    { name: 'Meditation', href: '/services#meditation' },
+  Services: [
+    { name: "Spiritual Readings", href: "/services#readings" },
+    { name: "Life Coaching", href: "/services#coaching" },
+    { name: "Energy Healing", href: "/services#healing" },
+    { name: "Meditation", href: "/services#meditation" },
   ],
-}
+};
 
 export default function Footer() {
   return (
@@ -42,7 +51,8 @@ export default function Footer() {
               Carolyn's Guiding Light
             </h3>
             <p className="text-gray-400 text-sm">
-              Illuminating your path to spiritual awakening and inner peace through compassionate guidance and transformative experiences.
+              Illuminating your path to spiritual awakening and inner peace
+              through compassionate guidance and transformative experiences.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -98,7 +108,10 @@ export default function Footer() {
             <h4 className="text-lg font-semibold">Contact Us</h4>
             <div className="space-y-3">
               <div className="flex items-start space-x-3 text-sm text-gray-400">
-                <MapPin size={16} className="mt-1 text-purple-400 flex-shrink-0" />
+                <MapPin
+                  size={16}
+                  className="mt-1 text-purple-400 flex-shrink-0"
+                />
                 <span>123 Spiritual Way, Enlightenment City, EC 12345</span>
               </div>
               <div className="flex items-center space-x-3 text-sm text-gray-400">
@@ -127,13 +140,22 @@ export default function Footer() {
               All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm text-gray-400">
-              <Link href="/privacy" className="hover:text-purple-400 transition-colors">
+              <Link
+                href="/privacy"
+                className="hover:text-purple-400 transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-purple-400 transition-colors">
+              <Link
+                href="/terms"
+                className="hover:text-purple-400 transition-colors"
+              >
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="hover:text-purple-400 transition-colors">
+              <Link
+                href="/cookies"
+                className="hover:text-purple-400 transition-colors"
+              >
                 Cookie Policy
               </Link>
             </div>
@@ -141,5 +163,5 @@ export default function Footer() {
         </motion.div>
       </div>
     </footer>
-  )
+  );
 }

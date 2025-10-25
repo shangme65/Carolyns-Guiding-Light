@@ -3,11 +3,13 @@
 ## Prerequisites
 
 1. **Neon Database Account**
+
    - Sign up at [neon.tech](https://neon.tech)
    - Create a new project
    - Copy your PostgreSQL connection string
 
 2. **Vercel Account**
+
    - Sign up at [vercel.com](https://vercel.com)
    - Install Vercel CLI: `npm i -g vercel`
 
@@ -72,12 +74,14 @@ vercel --prod
 ### 4. Post-Deployment
 
 1. **Custom Domain** (if using):
+
    - Go to your project settings in Vercel
    - Navigate to "Domains"
    - Add your custom domain
    - Update DNS records as instructed
 
 2. **Verify Deployment**:
+
    - Visit your deployed URL
    - Test authentication (sign up/sign in)
    - Test appointment booking
@@ -110,6 +114,7 @@ npx prisma migrate deploy
 ## Vercel Configuration
 
 The `vercel.json` file is already configured with:
+
 - Automatic builds
 - Environment variable references
 - Optimal regions
@@ -137,6 +142,7 @@ The `vercel.json` file is already configured with:
 ## Performance Optimization
 
 Already implemented:
+
 - Image optimization
 - Code splitting
 - Server-side rendering
@@ -153,6 +159,7 @@ Already implemented:
 ## Monitoring
 
 Use Vercel Analytics:
+
 - Enable in project settings
 - Monitor performance
 - Track errors
@@ -161,12 +168,14 @@ Use Vercel Analytics:
 ## Continuous Deployment
 
 Vercel automatically deploys:
+
 - `main` branch → Production
 - Other branches → Preview deployments
 
 ## Rollback
 
 If issues occur:
+
 ```bash
 vercel rollback
 ```
@@ -176,6 +185,7 @@ Or use Vercel dashboard to select a previous deployment.
 ## Support
 
 For deployment issues:
+
 - Vercel Docs: https://vercel.com/docs
 - Neon Docs: https://neon.tech/docs
 - Next.js Docs: https://nextjs.org/docs

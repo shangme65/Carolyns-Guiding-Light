@@ -1,61 +1,67 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
-import { Calendar, Clock, CheckCircle, Loader2, AlertCircle } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { formatDate } from '@/lib/utils'
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import {
+  Calendar,
+  Clock,
+  CheckCircle,
+  Loader2,
+  AlertCircle,
+} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { formatDate } from "@/lib/utils";
 
 export default function DashboardPage() {
-  const { data: session, status } = useSession()
-  const router = useRouter()
-  const [appointments, setAppointments] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [appointments, setAppointments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/auth/signin')
-    } else if (status === 'authenticated') {
-      fetchAppointments()
+    if (status === "unauthenticated") {
+      router.push("/auth/signin");
+    } else if (status === "authenticated") {
+      fetchAppointments();
     }
-  }, [status, router])
+  }, [status, router]);
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch('/api/appointments')
+      const response = await fetch("/api/appointments");
       if (response.ok) {
-        const data = await response.json()
-        setAppointments(data)
+        const data = await response.json();
+        setAppointments(data);
       }
     } catch (error) {
-      console.error('Failed to fetch appointments:', error)
+      console.error("Failed to fetch appointments:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
-  if (status === 'loading' || isLoading) {
+  if (status === "loading" || isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black flex items-center justify-center">
         <Loader2 className="h-12 w-12 text-purple-400 animate-spin" />
       </div>
-    )
+    );
   }
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'confirmed':
-        return 'text-green-400 bg-green-500/20'
-      case 'pending':
-        return 'text-yellow-400 bg-yellow-500/20'
-      case 'cancelled':
-        return 'text-red-400 bg-red-500/20'
+      case "confirmed":
+        return "text-green-400 bg-green-500/20";
+      case "pending":
+        return "text-yellow-400 bg-yellow-500/20";
+      case "cancelled":
+        return "text-red-400 bg-red-500/20";
       default:
-        return 'text-gray-400 bg-gray-500/20'
+        return "text-gray-400 bg-gray-500/20";
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black pt-28 pb-16 px-4">
@@ -87,7 +93,9 @@ export default function DashboardPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-4xl font-bold text-purple-400">{appointments.length}</p>
+                <p className="text-4xl font-bold text-purple-400">
+                  {appointments.length}
+                </p>
               </CardContent>
             </Card>
           </motion.div>
@@ -106,7 +114,11 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-4xl font-bold text-green-400">
-                  {appointments.filter((apt: any) => apt.status === 'confirmed').length}
+                  {
+                    appointments.filter(
+                      (apt: any) => apt.status === "confirmed"
+                    ).length
+                  }
                 </p>
               </CardContent>
             </Card>
@@ -126,7 +138,10 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-4xl font-bold text-yellow-400">
-                  {appointments.filter((apt: any) => apt.status === 'pending').length}
+                  {
+                    appointments.filter((apt: any) => apt.status === "pending")
+                      .length
+                  }
                 </p>
               </CardContent>
             </Card>
@@ -140,13 +155,17 @@ export default function DashboardPage() {
         >
           <Card className="bg-white/10 backdrop-blur-lg border-white/20">
             <CardHeader>
-              <CardTitle className="text-2xl text-white">Your Appointments</CardTitle>
+              <CardTitle className="text-2xl text-white">
+                Your Appointments
+              </CardTitle>
             </CardHeader>
             <CardContent>
               {appointments.length === 0 ? (
                 <div className="text-center py-12">
                   <Calendar className="h-16 w-16 text-white/30 mx-auto mb-4" />
-                  <p className="text-white/70 text-lg mb-6">No appointments yet</p>
+                  <p className="text-white/70 text-lg mb-6">
+                    No appointments yet
+                  </p>
                   <a
                     href="/appointments"
                     className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all"
@@ -167,11 +186,17 @@ export default function DashboardPage() {
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
-                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(appointment.status)}`}>
-                              {appointment.status.charAt(0).toUpperCase() + appointment.status.slice(1)}
+                            <span
+                              className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(
+                                appointment.status
+                              )}`}
+                            >
+                              {appointment.status.charAt(0).toUpperCase() +
+                                appointment.status.slice(1)}
                             </span>
                             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/20 text-purple-400">
-                              {appointment.type.charAt(0).toUpperCase() + appointment.type.slice(1)}
+                              {appointment.type.charAt(0).toUpperCase() +
+                                appointment.type.slice(1)}
                             </span>
                           </div>
                           <div className="flex items-center text-white/70 text-sm mb-2">
@@ -198,5 +223,5 @@ export default function DashboardPage() {
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

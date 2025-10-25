@@ -1,12 +1,12 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     container: {
@@ -52,11 +52,11 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
         spiritual: {
-          purple: '#8B5CF6',
-          indigo: '#6366F1',
-          cyan: '#06B6D4',
-          gold: '#F59E0B',
-        }
+          purple: "#8B5CF6",
+          indigo: "#6366F1",
+          cyan: "#06B6D4",
+          gold: "#F59E0B",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -73,32 +73,33 @@ const config: Config = {
           to: { height: "0" },
         },
         float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
         },
         glow: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.5' },
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
         },
         pulse: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '.5' },
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: ".5" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        float: 'float 3s ease-in-out infinite',
-        glow: 'glow 2s ease-in-out infinite',
-        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        float: "float 3s ease-in-out infinite",
+        glow: "glow 2s ease-in-out infinite",
+        pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-}
+};
 
-export default config
+export default config;

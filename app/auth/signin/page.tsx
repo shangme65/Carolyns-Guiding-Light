@@ -1,49 +1,55 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Sparkles, Mail, Lock, Loader2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Sparkles, Mail, Lock, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function SignInPage() {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  })
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError('')
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
 
     try {
-      const result = await signIn('credentials', {
+      const result = await signIn("credentials", {
         email: formData.email,
         password: formData.password,
         redirect: false,
-      })
+      });
 
       if (result?.error) {
-        setError('Invalid email or password')
+        setError("Invalid email or password");
       } else {
-        router.push('/dashboard')
-        router.refresh()
+        router.push("/dashboard");
+        router.refresh();
       }
     } catch (error) {
-      setError('An error occurred. Please try again.')
+      setError("An error occurred. Please try again.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black flex items-center justify-center px-4 py-20">
@@ -62,7 +68,9 @@ export default function SignInPage() {
             <Sparkles className="h-16 w-16 text-purple-400 mx-auto mb-4" />
           </motion.div>
           <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-white/70">Sign in to continue your spiritual journey</p>
+          <p className="text-white/70">
+            Sign in to continue your spiritual journey
+          </p>
         </div>
 
         <Card className="bg-white/10 backdrop-blur-lg border-white/20">
@@ -85,7 +93,9 @@ export default function SignInPage() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-white">Email</Label>
+                <Label htmlFor="email" className="text-white">
+                  Email
+                </Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-5 w-5 text-white/50" />
                   <Input
@@ -94,14 +104,18 @@ export default function SignInPage() {
                     placeholder="your@email.com"
                     required
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     className="pl-10 bg-white/10 border-white/30 text-white placeholder:text-white/50"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-white">Password</Label>
+                <Label htmlFor="password" className="text-white">
+                  Password
+                </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-3 h-5 w-5 text-white/50" />
                   <Input
@@ -110,7 +124,9 @@ export default function SignInPage() {
                     placeholder="••••••••"
                     required
                     value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, password: e.target.value })
+                    }
                     className="pl-10 bg-white/10 border-white/30 text-white placeholder:text-white/50"
                   />
                 </div>
@@ -128,15 +144,18 @@ export default function SignInPage() {
                     Signing in...
                   </>
                 ) : (
-                  'Sign In'
+                  "Sign In"
                 )}
               </Button>
             </form>
 
             <div className="mt-6 text-center">
               <p className="text-white/70">
-                Don't have an account?{' '}
-                <Link href="/auth/signup" className="text-purple-400 hover:text-purple-300 font-semibold">
+                Don't have an account?{" "}
+                <Link
+                  href="/auth/signup"
+                  className="text-purple-400 hover:text-purple-300 font-semibold"
+                >
                   Sign up
                 </Link>
               </p>
@@ -145,5 +164,5 @@ export default function SignInPage() {
         </Card>
       </motion.div>
     </div>
-  )
+  );
 }
