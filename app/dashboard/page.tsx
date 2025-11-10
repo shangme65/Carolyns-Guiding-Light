@@ -15,10 +15,24 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";
 
+interface Appointment {
+  id: string;
+  date: string;
+  time: string;
+  type: string;
+  status: string;
+  notes: string | null;
+  createdAt: string;
+  user?: {
+    name: string | null;
+    email: string | null;
+  };
+}
+
 export default function DashboardPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalFilter, setModalFilter] = useState<
