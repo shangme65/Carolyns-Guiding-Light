@@ -1,3 +1,4 @@
+````markdown
 # Deployment Guide for Carolyn's Guiding Light
 
 ## Prerequisites
@@ -30,6 +31,7 @@ npm run db:push
 # Seed the database (optional)
 npm run db:seed
 ```
+````
 
 ### 2. Prepare Environment Variables
 
@@ -193,3 +195,7 @@ For deployment issues:
 ---
 
 **Your app is now live! 🎉**
+
+```
+
+```
