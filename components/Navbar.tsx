@@ -35,29 +35,20 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-black/90 backdrop-blur-lg shadow-lg shadow-purple-500/20"
-          : "bg-transparent"
+        scrolled ? "bg-white shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <motion.div
-              animate={{
-                rotate: [0, 360],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
+          <Link href="/" className="flex items-center group">
+            <span
+              className={`text-lg sm:text-xl font-bold transition-all ${
+                scrolled
+                  ? "text-transparent bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 bg-clip-text"
+                  : "text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text"
+              }`}
             >
-              <Sparkles className="h-8 w-8 text-purple-500" />
-            </motion.div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
               Carolyn's Guiding Light
             </span>
           </Link>
@@ -68,8 +59,12 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative text-sm font-medium transition-colors hover:text-purple-400 ${
-                  pathname === item.href ? "text-purple-400" : "text-gray-300"
+                className={`relative text-sm font-medium transition-colors hover:text-purple-600 ${
+                  pathname === item.href
+                    ? "text-purple-600"
+                    : scrolled
+                    ? "text-gray-700"
+                    : "text-gray-300"
                 }`}
               >
                 {item.name}

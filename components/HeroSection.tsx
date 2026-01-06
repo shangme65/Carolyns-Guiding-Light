@@ -150,7 +150,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-30 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+      <div className="relative z-30 min-h-screen px-4 sm:px-6 lg:px-8 flex items-center justify-center">
         <div className="max-w-7xl mx-auto w-full">
           <AnimatePresence mode="wait">
             <motion.div
@@ -173,26 +173,13 @@ export default function HeroSection() {
                   ease: "easeInOut",
                 }}
               >
-                <div className="flex items-center justify-center space-x-2 mb-4">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  >
-                    <Sparkles className="h-12 w-12 text-yellow-400" />
-                  </motion.div>
-                </div>
-
-                <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
                   <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
                     {slides[currentSlide].title}
                   </span>
                 </h1>
 
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white/90">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-white/90">
                   {slides[currentSlide].subtitle}
                 </h2>
               </motion.div>
@@ -222,73 +209,8 @@ export default function HeroSection() {
                   </Button>
                 </Link>
               </div>
-
-              {/* Features Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto">
-                {features.map((feature, idx) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.2 }}
-                    className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all"
-                  >
-                    <motion.div
-                      animate={{
-                        y: [0, -10, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: idx * 0.3,
-                      }}
-                    >
-                      <feature.icon className="h-12 w-12 text-purple-400 mx-auto mb-4" />
-                    </motion.div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-white/70">{feature.description}</p>
-                  </motion.div>
-                ))}
-              </div>
             </motion.div>
           </AnimatePresence>
-
-          {/* Slide Navigation */}
-          <div className="absolute bottom-12 left-0 right-0 flex items-center justify-center gap-4">
-            <button
-              onClick={prevSlide}
-              className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-6 w-6 text-white" />
-            </button>
-
-            <div className="flex gap-2">
-              {slides.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  className={`h-3 rounded-full transition-all ${
-                    idx === currentSlide
-                      ? "w-12 bg-white"
-                      : "w-3 bg-white/50 hover:bg-white/70"
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={nextSlide}
-              className="p-3 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="h-6 w-6 text-white" />
-            </button>
-          </div>
         </div>
       </div>
     </div>
